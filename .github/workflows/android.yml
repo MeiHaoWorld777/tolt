@@ -43,6 +43,22 @@ jobs:
               }
           }
           G
+      - name: 沉浸式全屏
+        run: |
+          python3 - <<'P'
+          import json
+          # 主题加全屏+挖孔延伸
+          s = open("android/app/src/main/res/values/styles.xml").read()
+          if "windowFullscreen" not in s:
+              s = s.replace('<item name="windowNoTitle">true</item>',
+                  '<item name="windowNoTitle">true</item>\n        <item name="android:windowFullscreen">true</item>\n        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>')
+              open("android/app/src/main/res/values/styles.xml", "w").write(s)
+          # WebView 底色设为夜空深色
+          c = json.load(open("capacitor.config.json"))
+          c["backgroundColor"] = "#05070d"
+          json.dump(c, open("capacitor.config.json", "w"), ensure_ascii=False, indent=2)
+          P
+          grep -c windowFullscreen android/app/src/main/res/values/styles.xml
       - name: 打包 APK
         run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4

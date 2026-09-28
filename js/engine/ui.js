@@ -295,6 +295,14 @@ window.UI = (function () {
           c.fillRect(x - 3, y + 8, 6, 34 + Math.sin(t * 1.8 + i) * 8);
         });
         c.restore();
+      } else {
+        // 背景图未就绪：画夜空底色+星点，避免黑屏/乱纹
+        c.fillStyle = "#0a1224"; c.fillRect(0, 0, W, H);
+        for (let i = 0; i < 46; i++) {
+          const x = (i * 97 + 13) % W, y = (i * 61 + 7) % (H * 0.62);
+          c.fillStyle = "rgba(200,215,240," + (0.2 + 0.35 * Math.abs(Math.sin(t + i))) + ")";
+          c.fillRect(x, y, 1.6, 1.6);
+        }
       }
     }, 33);   // 不依赖rAF
     window.AudioSys.playBGM("title");
