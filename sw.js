@@ -1,4 +1,4 @@
-const CACHE = "tolt-v5";
+const CACHE = "tolt-v6";
 const ASSETS = ["./", "./index.html", "./css/style.css", "./manifest.json"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));

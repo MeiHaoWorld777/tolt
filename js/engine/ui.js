@@ -213,7 +213,7 @@ window.UI = (function () {
       K.bokeh(c, W, H, t, "rgba(140,220,255,A", 22, 55);
     }
     const titleImg = new Image();
-    titleImg.src = "assets/bg/title.png";
+    titleImg.src = "assets/bg/title.jpg";
     if (titleAnim) clearInterval(titleAnim);
     titleAnim = setInterval(() => {
       const t = (performance.now() - t0) / 1000;
