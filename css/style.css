@@ -374,3 +374,21 @@ body.title-intro #title-menu div:nth-child(7) { animation-delay: 2.6s; }
 .rh-sub { font-size: 13px; color: #7a86a3; margin-top: 10px; letter-spacing: 1px; }
 @keyframes rhSpin { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(90deg); } }
 @media (orientation: portrait) and (pointer: coarse) { #rotate-hint { display: flex; } }
+
+/* ===== 手机横屏自适应（矮视口等比缩放） ===== */
+@media (max-height: 560px) {
+  #dialogue-box { height: 116px; padding: 0 118px 0 20px; }
+  #text-area { left: 20px; right: 40px; font-size: 14.5px; line-height: 1.75; }
+  #name-plate { transform: scale(.82) !important; transform-origin: left bottom; }
+  #next-indicator { font-size: 15px; }
+  #quick-menu { right: 8px; bottom: 6px; gap: 3px; }
+  #quick-menu span { font-size: 10px; padding: 2.5px 6px; }
+  #hud { top: 8px; left: 12px; right: 12px; gap: 10px; font-size: 11px; }
+  #aff-bars { right: 6px; transform: translateY(-50%) scale(.72); transform-origin: right center; }
+  .aff-bar { width: 7px; height: 64px; }
+  .aff-name { font-size: 9px; letter-spacing: 2px; }
+  .choice { font-size: 14px; padding: 8px 18px; }
+  #title-card { font-size: 90%; }
+  #phone-ui { font-size: 13px; }
+  .sp { max-height: 74vh !important; }
+}
