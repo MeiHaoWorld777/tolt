@@ -154,6 +154,8 @@ window.UI = (function () {
         · 美术/音乐/音效：全部程序化实时生成（Canvas + Web Audio）<br>
         · 玩法：好感潮汐系统 / 沉默选项 / 回声选择 / 摘袋窗口 / 多结局<br>
         · 通关任意 3 条个人线后，标题画面将出现「潮汐」真结局线。</p>
+        <hr style="border:none;border-top:1px solid rgba(130,160,220,.2);margin:14px 0">
+        <p style="font-size:12px;color:rgba(150,168,200,.75)">Build 3024 · 纸袋与七帆企划 · 角色形象：社区二创，版权归原作者 · 程序化BGM与3D背景</p>
       </div>`;
     });
   }
