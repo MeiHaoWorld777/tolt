@@ -392,7 +392,7 @@ body.title-intro #title-menu div:nth-child(7) { animation-delay: 2.6s; }
   #title-card { font-size: 90%; }
   #phone-ui { font-size: 13px; }
   .sp { height: 106% !important; bottom: -4% !important; }
-  #title-inner { padding-top: 0 !important; }
+  #title-inner { padding-top: 0 !important; transform: scale(.82); transform-origin: 50% 44%; }
   #game-logo { margin-bottom: 4px; }
   #title-menu { margin-top: 2vh; gap: 5px; }
   #title-menu div { width: 210px; padding: 7px; font-size: 13px; letter-spacing: 3px; text-indent: 3px; }
