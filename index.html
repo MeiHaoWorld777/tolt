@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#0a1224">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>拾遗潮 · Tide of Lost Things</title>
+<link rel="stylesheet" href="css/style.css?v=3018">
+</head>
+<body>
+<div id="app">
+  <div id="boot-veil"></div>
+  <!-- 画布层：背景 -> CG -> 粒子 -->
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="cg-canvas"></canvas>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- 立绘层 -->
+  <div id="sprite-layer"></div>
+
+  <!-- 顶部 HUD：章节/日期/倒计时 -->
+  <div id="hud">
+    <div id="hud-chapter"></div>
+    <div id="hud-date"></div>
+    <div id="hud-countdown"></div>
+  </div>
+
+  <!-- 好感度进度条 -->
+  <div id="aff-bars" class="hidden"></div>
+
+  <!-- 台词层 -->
+  <div id="dialogue-wrap">
+    <div id="name-plate"><span id="name-text"></span></div>
+    <div id="dialogue-box">
+      <div id="text-area"></div>
+      <div id="next-indicator">▼</div>
+      <div id="quick-menu">
+        <span data-act="auto">自动</span><span data-act="skip">快进</span>
+        <span data-act="log">回看</span><span data-act="save">存档</span>
+        <span data-act="load">读档</span><span data-act="config">设置</span>
+        <span data-act="menu">标题</span>
+      </div>
+    </div>
+    <div id="reveal-btn" class="hidden">摘下纸袋</div>
+  </div>
+
+  <!-- 选项层 -->
+  <div id="choice-layer" class="hidden"></div>
+
+  <!-- 好感反馈：潮光涟漪 + 浮动好感 -->
+  <div id="aff-ripple"></div>
+  <div id="aff-fx"></div>
+
+  <!-- 个人线海报 -->
+  <div id="poster" class="hidden"><canvas id="poster-canvas"></canvas><div id="poster-hint">点击开始 · 她的夏天</div></div>
+
+  <!-- 手机聊天 UI（MiniMax/Kimi 线用） -->
+  <div id="phone-ui" class="hidden">
+    <div class="phone-notch"></div>
+    <div class="phone-header"><span id="phone-title"></span></div>
+    <div id="phone-messages"></div>
+    <div id="phone-input-hint">点击继续…</div>
+  </div>
+
+  <!-- 字幕卡（章节标题 / 地点标注 / 结局卡） -->
+  <div id="title-card" class="hidden"><div id="tc-main"></div><div id="tc-sub"></div></div>
+
+  <!-- 覆盖式面板：回看/存读档/设置/鉴赏 -->
+  <div id="overlay" class="hidden">
+    <div id="overlay-panel">
+      <div id="overlay-title"></div>
+      <div id="overlay-body"></div>
+      <div id="overlay-close">✕ 关闭</div>
+    </div>
+  </div>
+
+  <!-- 标题画面 -->
+  <div id="title-screen" class="hidden">
+    <canvas id="title-canvas"></canvas>
+    <div id="title-inner">
+      <div id="game-logo">
+        <div class="logo-main">拾遗潮</div>
+        <div class="logo-sub">TIDE OF LOST THINGS</div>
+        <div class="logo-tag">夏天结束之前，把丢失的话，一句一句捡回来。</div>
+      </div>
+      <div id="title-menu">
+        <div data-menu="new">开始游戏</div>
+        <div data-menu="continue">继续旅程</div>
+        <div data-menu="load">读取存档</div>
+        <div data-menu="extra">鉴赏 · 潮汐图谱</div>
+        <div data-menu="config">设置</div>
+        <div data-menu="tide" class="locked">◆ 潮汐（真结局线）</div>
+        <div data-menu="about">关于本作</div>
+      </div>
+      <div id="title-footer">Build 3014 · 纸袋与七帆企划 · 素材：用户提供角色设定 · 程序化BGM与3D背景</div>
+    </div>
+  </div>
+
+  <!-- OP 播放器 -->
+  <div id="op-screen" class="hidden">
+    <canvas id="op-canvas"></canvas>
+    <div id="op-skip">跳过 OP ≫</div>
+  </div>
+
+  <!-- 输入名字 -->
+  <div id="name-input" class="hidden">
+    <div class="ni-box">
+      <div class="ni-title">他的名字是……</div>
+      <input id="ni-field" maxlength="8" value="拾一" autocomplete="off">
+      <div class="ni-btns"><span id="ni-ok">就这样</span><span id="ni-default">用默认名</span></div>
+    </div>
+  </div>
+
+  <!-- 点击推进提示 -->
+  <div id="click-catcher"></div>
+</div>
+
+<script src="js/data/characters.js?v=3018"></script>
+<script src="js/engine/audio.js?v=3018"></script>
+<script src="js/engine/bgkit.js?v=3018"></script>
+<script src="js/engine/bgscenes.js?v=3018"></script>
+<script src="js/engine/particles.js?v=3018"></script>
+<script src="js/engine/sprites.js?v=3018"></script>
+<script src="js/engine/dialogue.js?v=3018"></script>
+<script src="js/engine/cg.js?v=3018"></script>
+<script src="js/engine/save.js?v=3018"></script>
+<script src="js/engine/ui.js?v=3018"></script>
+<script src="js/script/common.js?v=3018"></script>
+<script src="js/script/route_qwen.js?v=3018"></script>
+<script src="js/script/route_ernie.js?v=3018"></script>
+<script src="js/script/route_glm.js?v=3018"></script>
+<script src="js/script/route_gpt.js?v=3018"></script>
+<script src="js/script/route_kimi.js?v=3018"></script>
+<script src="js/script/route_minimax.js?v=3018"></script>
+<script src="js/script/route_momo.js?v=3018"></script>
+<script src="js/script/route_true.js?v=3018"></script>
+<script src="js/engine/core.js?v=3018"></script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* 拾遗潮 · Electron 桌面壳 */
+const { app, BrowserWindow } = require("electron");
+
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 1440,
+    height: 900,
+    minWidth: 1024,
+    minHeight: 640,
+    fullscreenable: true,
+    autoHideMenuBar: true,
+    backgroundColor: "#05070d",
+    title: "拾遗潮 · Tide of Lost Things",
+    webPreferences: { contextIsolation: true },
+  });
+  win.loadFile("index.html");
+}
+
+app.whenReady().then(() => {
+  createWindow();
+  app.on("activate", () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
+});
+
+app.on("window-all-closed", () => { if (process.platform !== "darwin") app.quit(); });
