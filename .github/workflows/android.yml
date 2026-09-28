@@ -46,19 +46,20 @@ jobs:
       - name: 沉浸式全屏
         run: |
           python3 - <<'P'
-          import json
-          # 主题加全屏+挖孔延伸
-          s = open("android/app/src/main/res/values/styles.xml").read()
+          import json, re
+          p = "android/app/src/main/res/values/styles.xml"
+          s = open(p).read()
+          print("--- styles before ---"); print(s)
           if "windowFullscreen" not in s:
-              s = s.replace('<item name="windowNoTitle">true</item>',
-                  '<item name="windowNoTitle">true</item>\n        <item name="android:windowFullscreen">true</item>\n        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>')
-              open("android/app/src/main/res/values/styles.xml", "w").write(s)
-          # WebView 底色设为夜空深色
+              s2 = re.sub(r'(<style name="AppTheme.NoActionBar"[^>]*>)',
+                          r'\1\n        <item name="android:windowFullscreen">true</item>\n        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>', s)
+              if s2 != s:
+                  open(p, "w").write(s2)
           c = json.load(open("capacitor.config.json"))
           c["backgroundColor"] = "#05070d"
           json.dump(c, open("capacitor.config.json", "w"), ensure_ascii=False, indent=2)
+          print("沉浸式配置完成")
           P
-          grep -c windowFullscreen android/app/src/main/res/values/styles.xml
       - name: 打包 APK
         run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
