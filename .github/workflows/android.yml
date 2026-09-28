@@ -74,6 +74,16 @@ jobs:
           print("沉浸式步骤完成")
           P
           exit 0
+      - name: 应用图标
+        run: |
+          for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            cp tools/appicon/mipmap-$d/ic_launcher.png android/app/src/main/res/mipmap-$d/ic_launcher.png
+            cp tools/appicon/mipmap-$d/ic_launcher_round.png android/app/src/main/res/mipmap-$d/ic_launcher_round.png
+          done
+          cp tools/appicon/ic_launcher_foreground.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+          cp tools/appicon/ic_launcher_bg.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_bg.png
+          printf '<?xml version="1.0" encoding="utf-8"?>\n<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n    <background android:drawable="@mipmap/ic_launcher_bg"/>\n    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>\n</adaptive-icon>\n' > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          cp android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
       - name: 打包 APK
         run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
