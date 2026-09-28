@@ -365,6 +365,9 @@ body.title-intro #title-menu div:nth-child(7) { animation-delay: 2.6s; }
 
 
 
+/* 关闭安卓点按高亮（整屏闪蓝光的元凶） */
+* { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; }
+
 /* ===== 手机竖屏提示层 ===== */
 #rotate-hint { display: none; position: fixed; inset: 0; z-index: 9999;
   background: linear-gradient(180deg, #060a14 0%, #0a1224 100%);
