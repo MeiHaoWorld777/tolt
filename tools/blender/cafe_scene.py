@@ -6,8 +6,8 @@ import bpy, math, sys, random
 from mathutils import Vector
 
 # ---------- 基础 ----------
-OUT = "/Users/meihaoworld/.zcode/workspace/default/galgame/assets/blender/cafe_whale_bg.png"
-BLEND = "/Users/meihaoworld/.zcode/workspace/default/galgame/tools/blender/cafe_scene.blend"
+OUT = "/Users/yourname/.zcode/workspace/default/galgame/assets/blender/cafe_whale_bg.png"
+BLEND = "/Users/yourname/.zcode/workspace/default/galgame/tools/blender/cafe_scene.blend"
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 random.seed(7)

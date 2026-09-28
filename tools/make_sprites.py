@@ -4,8 +4,8 @@ import os, json
 import numpy as np
 from PIL import Image, ImageFilter
 
-SRC = "/Users/meihaoworld/Desktop/AI视频素材/AI娘角色三视图"
-ROOT = "/Users/meihaoworld/.zcode/workspace/default/galgame"
+SRC = "/Users/yourname/Desktop/AI视频素材/AI娘角色三视图"
+ROOT = "/Users/yourname/.zcode/workspace/default/galgame"
 OUT = os.path.join(ROOT, "tools/split")
 os.makedirs(OUT, exist_ok=True)
 

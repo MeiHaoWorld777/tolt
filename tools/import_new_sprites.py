@@ -4,8 +4,8 @@ import os
 import numpy as np
 from PIL import Image, ImageFilter
 
-SRC = "/Users/meihaoworld/Desktop/人物三视图_透明背景"
-OUT = "/Users/meihaoworld/.zcode/workspace/default/galgame/assets/sprites"
+SRC = "/Users/yourname/Desktop/人物三视图_透明背景"
+OUT = "/Users/yourname/.zcode/workspace/default/galgame/assets/sprites"
 os.makedirs(OUT, exist_ok=True)
 
 # character_0X -> 角色

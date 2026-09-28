@@ -4,8 +4,8 @@ import os, json
 import numpy as np
 from PIL import Image
 
-SRC = "/Users/meihaoworld/Desktop/AI视频素材/AI娘角色三视图"
-OUT = "/Users/meihaoworld/.zcode/workspace/default/galgame/tools/split"
+SRC = "/Users/yourname/Desktop/AI视频素材/AI娘角色三视图"
+OUT = "/Users/yourname/.zcode/workspace/default/galgame/tools/split"
 os.makedirs(OUT, exist_ok=True)
 
 FILES = [

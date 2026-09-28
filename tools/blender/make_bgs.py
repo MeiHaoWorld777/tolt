@@ -5,7 +5,7 @@
 import bpy, math, random, time
 from mathutils import Vector
 
-OUT_DIR = "/Users/meihaoworld/.zcode/workspace/default/galgame/assets/bg/"
+OUT_DIR = "/Users/yourname/.zcode/workspace/default/galgame/assets/bg/"
 SC = None
 
 # ---------------- 基础工具 ----------------
