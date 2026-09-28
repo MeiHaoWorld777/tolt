@@ -392,9 +392,12 @@ body.title-intro #title-menu div:nth-child(7) { animation-delay: 2.6s; }
   #title-card { font-size: 90%; }
   #phone-ui { font-size: 13px; }
   .sp { height: 106% !important; bottom: -4% !important; }
-  #title-menu { margin-top: 3vh; gap: 6px; }
-  #title-menu div { width: 218px; padding: 8px; font-size: 14px; letter-spacing: 4px; text-indent: 4px; }
-  .logo-main { font-size: clamp(44px, 9vw, 72px); }
-  .logo-tag { font-size: 12px !important; }
+  #title-inner { padding-top: 0 !important; }
+  #game-logo { margin-bottom: 4px; }
+  #title-menu { margin-top: 2vh; gap: 5px; }
+  #title-menu div { width: 210px; padding: 7px; font-size: 13px; letter-spacing: 3px; text-indent: 3px; }
+  .logo-main { font-size: clamp(36px, 7.5vw, 58px); }
+  .logo-sub { font-size: 11px !important; }
+  .logo-tag { font-size: 11px !important; margin-top: 6px !important; }
   #title-footer { font-size: 10px; bottom: 6px; }
 }
