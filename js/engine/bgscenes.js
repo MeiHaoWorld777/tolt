@@ -753,7 +753,7 @@ window.BG_SCENES = (function () {
       const scale = 1.1 + Math.sin(t * 0.05) * 0.012;
       const w = W * scale, h = H * scale;
       const px = (W - w) / 2 + Math.sin(t * 0.04) * W * 0.009;
-      const py = (H - h) / 2 + Math.cos(t * 0.03) * H * 0.007;
+      const py = (H - h) * 0.18 + Math.cos(t * 0.03) * H * 0.007;
       c.drawImage(im, px, py, w, h);
       K.vignette(c, W, H, 0.32);
     } };

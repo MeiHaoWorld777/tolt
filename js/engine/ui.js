@@ -220,7 +220,7 @@ window.UI = (function () {
         const introK = Math.min(1, t / 3.4);
         const scale = 1.06 + Math.sin(t * 0.05) * 0.008 + (1 - introK) * 0.12;
         const w = W * scale, h = H * scale;
-        c.drawImage(titleImg, (W - w) / 2 + Math.sin(t * 0.04) * 8, (H - h) / 2, w, h);
+        c.drawImage(titleImg, (W - w) / 2 + Math.sin(t * 0.04) * 8, (H - h) * 0.18, w, h);
 
         /* ---- 实时动画层 ---- */
         const lamp = { x: W * 0.575, y: H * 0.098 };
