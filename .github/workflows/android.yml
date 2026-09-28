@@ -31,6 +31,18 @@ jobs:
           M=android/app/src/main/AndroidManifest.xml
           grep -q sensorLandscape $M || sed -i 's|<activity|<activity\n            android:screenOrientation="sensorLandscape"|' $M
           grep -q screenOrientation $M && echo "横屏锁定 OK"
+      - name: 对齐 Kotlin 版本
+        run: |
+          cat >> android/app/build.gradle <<'G'
+
+          dependencies {
+              constraints {
+                  implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22") { because("align kotlin-stdlib") }
+                  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22") { because("align jdk7") }
+                  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22") { because("align jdk8") }
+              }
+          }
+          G
       - name: 打包 APK
         run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
