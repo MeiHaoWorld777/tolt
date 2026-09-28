@@ -110,9 +110,6 @@ window.Game = (function () {
     for (const [id, v] of Object.entries(obj)) {
       S.aff[id] = (S.aff[id] || 0) + v;
       if (v > 0 && window.AFF_COLORS[id]) {
-        const el = $("aff-ripple");
-        el.style.background = `radial-gradient(ellipse at 50% 88%, ${window.AFF_COLORS[id]} 0%, transparent 62%)`;
-        el.classList.remove("play"); void el.offsetWidth; el.classList.add("play");
         showAffPop(id, v);
         // 胶囊脉冲 + 浮动加值
         const row = document.querySelector(`.aff-row[data-id="${id}"]`);
