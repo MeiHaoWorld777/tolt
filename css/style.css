@@ -363,3 +363,14 @@ body.title-intro #title-menu div:nth-child(7) { animation-delay: 2.6s; }
 @keyframes intro-sub { 0% { opacity: 0; transform: translateY(10px); filter: blur(6px); }
   100% { opacity: 1; transform: none; filter: blur(0); } }
 
+
+
+/* ===== 手机竖屏提示层 ===== */
+#rotate-hint { display: none; position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(180deg, #060a14 0%, #0a1224 100%);
+  align-items: center; justify-content: center; text-align: center; }
+.rh-icon { font-size: 54px; animation: rhSpin 1.6s ease-in-out infinite; }
+.rh-main { font-size: 22px; color: #dfe6f5; margin-top: 18px; letter-spacing: 4px; }
+.rh-sub { font-size: 13px; color: #7a86a3; margin-top: 10px; letter-spacing: 1px; }
+@keyframes rhSpin { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(90deg); } }
+@media (orientation: portrait) and (pointer: coarse) { #rotate-hint { display: flex; } }
