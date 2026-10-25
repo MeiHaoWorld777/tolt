@@ -801,18 +801,9 @@ window.BG_SCENES = (function () {
     cur = id;
     const sc = S[id];
     if (window.AudioSys) AudioSys.amb(sc && sc.amb ? sc.amb : null);
-    // three.js 场景优先（咖啡厅保留 2D 渲染图）
-    if (window.BG3D && BG3D.supported && BG3D.has(id) && id !== "cafe_whale" && id !== "black") {
-      BG3D.show(id);
-      if (canvas) canvas.style.visibility = "hidden";
-    } else {
-      if (window.BG3D) BG3D.hide();
-      if (canvas) canvas.style.visibility = "visible";
-    }
   }
   function tick() {
     if (!ctx2 || !cur || !S[cur]) return;
-    if (window.BG3D && BG3D.current) return;   // 3D 场景由 bg-gl 绘制
     const t = (performance.now() - t0) / 1000;
     S[cur].painter(ctx2, innerWidth, innerHeight, t);
   }
