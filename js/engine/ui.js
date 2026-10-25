@@ -172,6 +172,11 @@ window.UI = (function () {
       setTimeout(() => { veil.remove(); document.body.classList.remove("title-intro"); }, 4600);
       firstTitle = false;
     }
+    if (window.Title3D && Title3D.supported) {
+      Title3D.mount(titleScreen);
+      window.AudioSys.playBGM("title");
+      return;
+    }
     const cv = $("title-canvas"), c = cv.getContext("2d");
     const K = window.BGKit;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -310,6 +315,7 @@ window.UI = (function () {
   function hideTitle() {
     titleScreen.classList.add("hidden");
     if (titleAnim) { clearInterval(titleAnim); titleAnim = null; }
+    if (window.Title3D) Title3D.unmount();
   }
 
   $("title-menu").addEventListener("click", e => {
