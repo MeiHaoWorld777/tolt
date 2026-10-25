@@ -55,7 +55,7 @@ window.BG3D = (function () {
   function lampPost(g, x, z, c) {
     cyl(g, 0.06, 0.08, 3.4, 0x2a2f3a, x, 1.7, z, 8);
     flat(g, 0.7, 0.16, 0xfff2c8, x, 3.42, z, 0, 0);
-    glow(g, c || 0xffe2a0, x, 3.45, z, 2.6, 0.85);
+    glow(g, c || 0xffe2a0, x, 3.45, z, 2.0, 0.8);
   }
   function building(g, x, z, w, h, d, c, lit) {
     box(g, w, h, d, c, x, h / 2, z);
@@ -174,14 +174,14 @@ window.BG3D = (function () {
     for (let i = 0; i < 3; i++) glow(g, 0xfff0d0, -6 + i * 6, 6.6, -9, 5, 0.9);
   };
   B.courtyard = (g, P) => {
-    flat(g, 50, 40, 0x9aa38c, 0, 0, 0, -Math.PI / 2);
+    flat(g, 300, 300, 0x9aa38c, 0, 0, -60, -Math.PI / 2);
     flat(g, 3.4, 40, 0xb8b0a0, 0, 0.02, 0, -Math.PI / 2);
     flat(g, 40, 9, 0xc8bca8, 0, 4.5, -16); box(g, 1.2, 7, 1.2, 0xb0a490, -6, 3.5, -12); box(g, 1.2, 7, 1.2, 0xb0a490, 6, 3.5, -12);
     box(g, 14.4, 1, 1.4, 0xb0a490, 0, 7.4, -12);
     tree(g, -13, -6, 1.9, 0x33663a); tree(g, 13, -8, 2.1, 0x2e5c34); tree(g, -17, 8, 1.4, 0x33663a);
   };
   B.schoolGate = (g, P) => {
-    flat(g, 60, 60, 0x8e9a88, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 400, 0x8e9a88, 0, 0, -60, -Math.PI / 2);
     flat(g, 8, 60, 0xb0a898, 0, 0.02, 0, -Math.PI / 2);
     box(g, 1.6, 6.5, 1.6, 0xc8bca8, -4.4, 3.25, -10); box(g, 1.6, 6.5, 1.6, 0xc8bca8, 4.4, 3.25, -10);
     box(g, 10.6, 1, 1.3, 0xc8bca8, 0, 7, -10);
@@ -191,13 +191,15 @@ window.BG3D = (function () {
     tree(g, -12, -2, 1.8, 0x2e5c34); tree(g, 12, -3, 2, 0x2e5c34);
   };
   B.park = (g, P) => {
-    flat(g, 60, 60, 0x7e9a70, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 400, 0x7e9a70, 0, 0, -60, -Math.PI / 2);
     flat(g, 5, 60, 0xc0b090, 0, 0.02, 0, -Math.PI / 2);
     for (let i = 0; i < 6; i++) { tree(g, -8 - (i % 2) * 3, -4 - i * 7, 1.7 + (i % 3) * 0.3, 0x2e5c34); tree(g, 8 + (i % 2) * 3, -8 - i * 7, 1.6 + (i % 2) * 0.4, 0x33663a); }
     for (let i = 0; i < 4; i++) lampPost(g, -4.4, -6 - i * 12, P.sunC);
   };
   B.rooftop = (g, P) => {
-    flat(g, 60, 60, P.roofC, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 240, P.cityC, 0, -0.02, -60, -Math.PI / 2);
+    sea(g, P.seaA, P.seaB, -150);
+    flat(g, 60, 60, P.roofC, 0, 0.04, 0, -Math.PI / 2);
     box(g, 7, 4.4, 6, P.wallC, -20, 2.2, -14); box(g, 3.4, 2.6, 0.3, 0x3a6a8a, -19, 1.3, -10.9);
     cyl(g, 2.4, 2.4, 3.4, 0x9aa4ac, -18, 6.1, -16, 16);
     for (let i = 0; i < 4; i++) cyl(g, 0.1, 0.1, 1.6, 0x8a9098, -19.4 + i * 1.2, 4.6, -16, 6);
@@ -206,18 +208,17 @@ window.BG3D = (function () {
     for (let i = 0; i < 8; i++) { box(g, 0.14, 1.5, 0.14, 0x6a7a88, 28, 0.75, -22 + i * 5.4); if (i < 7) box(g, 0.12, 0.12, 5.4, 0x6a7a88, 28, 1.4, -19.3 + i * 5.4); }
     for (let i = 0; i < 9; i++) building(g, -58 + i * 8.5, -95, 6, 5 + (i * 13) % 12, 6, P.cityC, P.night);
     const lh = cyl(g, 0.5, 0.8, 6, 0xd8dde4, 24, 3, -110, 10); glow(g, 0xfff2c8, 24, 6.4, -110, 6, P.night ? 1 : 0.8);
-    sea(g, P.seaA, P.seaB, -60);
-    glow(g, P.sunC, -30, 20, -140, 34, 0.5);
+    glow(g, P.sunC, -30, 20, -180, 34, 0.5);
   };
   B.seaside = (g, P) => {
-    flat(g, 70, 34, P.sandC, 0, 0, 10, -Math.PI / 2);
+    flat(g, 400, 200, P.sandC, 0, 0, 30, -Math.PI / 2);
     sea(g, P.seaA, P.seaB, -6);
-    for (let i = 0; i < 6; i++) { cyl(g, 0.22, 0.26, 2.2, 0x4a4038, -18 + i * 7, 0.9, -4, 8); if (i < 5) box(g, 7, 0.22, 0.4, 0x4a4038, -14.5 + i * 7, 1.85, -4); }
+    for (let i = 0; i < 6; i++) { cyl(g, 0.22, 0.26, 2.2, 0x4a4038, -18 + i * 7, 0.9, -6, 8); if (i < 5) box(g, 7, 0.22, 0.4, 0x4a4038, -14.5 + i * 7, 1.85, -6); }
     if (P.night) glow(g, 0xdfe8ff, 22, 26, -120, 16, 0.95);
     else glow(g, P.sunC, P.night ? 0 : 26, P.night ? 24 : 12, -130, 44, 0.55);
   };
   B.shopping = (g, P) => {
-    flat(g, 60, 70, 0x3c4048, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 400, 0x3c4048, 0, 0, -60, -Math.PI / 2);
     flat(g, 9, 70, 0x4a4e56, 0, 0.02, 0, -Math.PI / 2);
     for (let i = 0; i < 6; i++) {
       const h = 9 + (i % 3) * 3;
@@ -231,7 +232,7 @@ window.BG3D = (function () {
     lampPost(g, -5.6, -8, P.sunC); lampPost(g, 5.6, -26, P.sunC); lampPost(g, -5.6, -44, P.sunC);
   };
   B.festival = (g, P) => {
-    flat(g, 60, 80, 0x3a3630, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 400, 0x3a3630, 0, 0, -60, -Math.PI / 2);
     for (let i = 0; i < 5; i++) {
       building(g, -13, -8 - i * 13, 11, 10, 7, 0x2c2820, false);
       building(g, 13, -14 - i * 13, 11, 9, 7, 0x302c24, false);
@@ -247,20 +248,20 @@ window.BG3D = (function () {
     box(g, 0.08, 0.08, 66, 0x2a2620, -11, 6.9, -32); box(g, 0.08, 0.08, 66, 0x2a2620, 11, 6.9, -32);
   };
   B.station = (g, P) => {
-    flat(g, 70, 90, P.groundC, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 200, P.groundC, 0, 0, -20, -Math.PI / 2);
     box(g, 26, 1.1, 60, P.platC, 0, 0.55, -8);
     flat(g, 1.1, 56, 0xe8b84a, 0, 1.12, -10, -Math.PI / 2);
     box(g, 22, 0.5, 44, P.roofC, -2, 9.6, -12); box(g, 22, 0.4, 3, P.roofC, -2, 10.1, -12);
     for (let i = 0; i < 6; i++) cyl(g, 0.28, 0.34, 9, P.pilC, -11 + i * 4.4, 4.8, -20 + (i % 2) * 14, 10);
     box(g, 4.6, 1.3, 0.3, 0x2c3448, -6, 6.8, -6); glow(g, 0x96d2ff, -6, 6.8, -5.7, 5.4, 0.9);
     for (let i = 0; i < 3; i++) lampPost(g, -14 + i * 12, 6, 0xffe2a0);
-    for (let i = 0; i < 7; i++) building(g, -52 + i * 8, -70, 6.4, 6 + (i * 11) % 13, 6, P.cityC, P.night);
-    sea(g, P.seaA, P.seaB, -50);
+    for (let i = 0; i < 7; i++) building(g, -52 + i * 8, -85, 6.4, 6 + (i * 11) % 13, 6, P.cityC, P.night);
+    sea(g, P.seaA, P.seaB, -150);
     box(g, 30, 2.2, 3, 0x141a26, 14, 1.6, -34);
     glow(g, P.sunC, 34, 14, -110, 30, 0.5);
   };
   B.ferris = (g, P) => {
-    flat(g, 80, 80, P.groundC, 0, 0, 0, -Math.PI / 2);
+    flat(g, 400, 400, P.groundC, 0, 0, -60, -Math.PI / 2);
     const wh = new THREE.Group(); wh.position.set(0, 15, -34);
     const rim = new THREE.Mesh(new THREE.TorusGeometry(12.6, 0.32, 8, 40), new THREE.MeshBasicMaterial({ color: P.rimC, fog: true }));
     wh.add(rim);
