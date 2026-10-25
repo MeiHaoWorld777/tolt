@@ -145,8 +145,8 @@ window.Title3D = (function () {
     /* --- 旋转光束（双锥） --- */
     beamGroup = new THREE.Group();
     beamGroup.position.set(13, 14.8, 1.5);
-    const beamMat = new THREE.MeshBasicMaterial({ color: 0xffe8b0, transparent: true, opacity: 0.10, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
-    const b1 = new THREE.Mesh(new THREE.ConeGeometry(4.2, 52, 20, 1, true), beamMat);
+    const beamMat = new THREE.MeshBasicMaterial({ color: 0xffe8b0, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    const b1 = new THREE.Mesh(new THREE.ConeGeometry(3.6, 52, 20, 1, true), beamMat);
     b1.rotation.z = Math.PI / 2; b1.position.x = 26;
     const b2 = b1.clone(); b2.rotation.z = -Math.PI / 2; b2.position.x = -26;
     beamGroup.add(b1, b2); scene.add(beamGroup);

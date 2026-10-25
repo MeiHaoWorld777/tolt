@@ -172,6 +172,7 @@ window.UI = (function () {
       setTimeout(() => { veil.remove(); document.body.classList.remove("title-intro"); }, 4600);
       firstTitle = false;
     }
+    if (window.BG3D) BG3D.hide();
     if (window.Title3D && Title3D.supported) {
       Title3D.mount(titleScreen);
       window.AudioSys.playBGM("title");
