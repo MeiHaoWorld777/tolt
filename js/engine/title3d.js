@@ -28,6 +28,8 @@ window.Title3D = (function () {
     holder = document.createElement("div");
     holder.id = "title-gl";
     holder.style.cssText = "position:absolute;inset:0;z-index:1;";
+    const inner = screen.querySelector("#title-inner");
+    if (inner) inner.style.cssText += ";position:relative;z-index:10;";
     screen.insertBefore(holder, screen.firstChild);
 
     flashDiv = document.createElement("div");
@@ -89,10 +91,10 @@ window.Title3D = (function () {
         "float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }",
         "void main(){",
         "  float d = vUv.y;",                       // 0=近岸 1=远
-        "  vec3 deep = vec3(0.045,0.10,0.17); vec3 far = vec3(0.09,0.21,0.34);",
+        "  vec3 deep = vec3(0.030,0.068,0.125); vec3 far = vec3(0.055,0.145,0.26);",
         "  vec3 c = mix(deep, far, pow(d,1.4));",
         "  float band = sin(vUv.x*90.0 + uT*1.6 + sin(vUv.y*24.0+uT*0.7)*1.8)*0.5+0.5;",
-        "  c += vec3(0.05,0.09,0.13) * band * d * 0.55;",
+        "  c += vec3(0.035,0.07,0.11) * band * d * 0.4;",
         "  float sp = hash(floor(vUv*vec2(160.0,60.0)) + floor(uT*3.0));",
         "  c += vec3(0.10,0.16,0.22) * step(0.985, sp) * (0.25+d);",
         "  gl_FragColor = vec4(c,1.0);",
@@ -121,10 +123,10 @@ window.Title3D = (function () {
 
     /* --- 悬崖（右） --- */
     const cliffMat = new THREE.MeshBasicMaterial({ color: 0x0a0f1c, fog: true });
-    const cliff = new THREE.Mesh(new THREE.BoxGeometry(30, 9, 16), cliffMat);
-    cliff.position.set(26, 4.5, -4); scene.add(cliff);
-    const cliff2 = new THREE.Mesh(new THREE.BoxGeometry(12, 4.5, 12), cliffMat);
-    cliff2.position.set(13, 2.25, 2); scene.add(cliff2);
+    const cliff = new THREE.Mesh(new THREE.BoxGeometry(24, 6.5, 13), cliffMat);
+    cliff.position.set(30, 3.25, -8); scene.add(cliff);
+    const cliff2 = new THREE.Mesh(new THREE.BoxGeometry(9, 4.2, 9), cliffMat);
+    cliff2.position.set(15, 2.1, -1); scene.add(cliff2);
 
     /* --- 灯塔 --- */
     const towerMat = new THREE.MeshBasicMaterial({ color: 0x0b0f1a, fog: true });
@@ -143,10 +145,10 @@ window.Title3D = (function () {
     /* --- 旋转光束（双锥） --- */
     beamGroup = new THREE.Group();
     beamGroup.position.set(13, 14.8, 1.5);
-    const beamMat = new THREE.MeshBasicMaterial({ color: 0xffe8b0, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
-    const b1 = new THREE.Mesh(new THREE.ConeGeometry(6.5, 70, 20, 1, true), beamMat);
-    b1.rotation.z = Math.PI / 2; b1.position.x = 35;
-    const b2 = b1.clone(); b2.rotation.z = -Math.PI / 2; b2.position.x = -35;
+    const beamMat = new THREE.MeshBasicMaterial({ color: 0xffe8b0, transparent: true, opacity: 0.10, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    const b1 = new THREE.Mesh(new THREE.ConeGeometry(4.2, 52, 20, 1, true), beamMat);
+    b1.rotation.z = Math.PI / 2; b1.position.x = 26;
+    const b2 = b1.clone(); b2.rotation.z = -Math.PI / 2; b2.position.x = -26;
     beamGroup.add(b1, b2); scene.add(beamGroup);
 
     /* --- 七帆灯（岸灯 + 水面倒影条） --- */
